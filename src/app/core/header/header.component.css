@@ -1,0 +1,112 @@
+/* The parent division */
+.mainDiv
+{
+    width:100%;
+    box-shadow: 0 1px 1px 1px #d3cfcf;
+    position: fixed;
+    z-index: 1;
+}
+/* Web division large screen */
+.web
+{
+    padding: 10px 10px 10px 10px;
+    background:white;
+}
+/* Logo */
+.head
+{
+    font-size: 23pt;
+}
+/* Search bar */
+.searchTerm 
+{
+    width: 100%;
+    border: 1px solid #9b94ec;
+    border-right: none;
+    padding: 5px;
+    height: 20px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}  
+.searchButton 
+{
+    width: 40px;
+    height: 32px;
+    border: 1px solid #9b94ec;
+    background: #fff;
+    color: #4d8490;
+    border-radius: 0 5px 5px 0;
+    border-left: none;
+    cursor: pointer;
+}  
+.search 
+{
+    width: 400px;
+    display: flex;
+}
+/* Location bar */
+.addLoc 
+{
+    width: 100%;
+    border: 1px solid #9b94ec;
+    border-right: none;
+    padding: 5px;
+    height: 20px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color:#4d8490;
+} 
+.locationButton
+{
+    width: 40px;
+    height: 32px;
+    border: 1px solid #c5c0c0;
+    background: #4d8490;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+.location
+{
+     width: 250px;
+     display: flex;  
+}
+/* Country flag division */
+img
+{
+    height: 29px; 
+    display: flex;
+    border-radius: 3px 3px 3px 3px;
+}
+.drop
+{
+      color: #aeb2b4;
+      cursor: pointer;
+}
+/* Shop cart division */
+.shop
+  {
+      background: white;
+      font-size: 10pt;
+  }
+/* User division */
+.user
+{
+      background: white;
+      font-size: 10pt;
+}
+/* Mobile division */
+.mob
+{
+    padding: 10px 10px 10px 10px;
+    background:white;
+}
+.profile
+{
+    font-size: 23pt;
+    color: #4d8490;
+    margin-left:10px;
+}
+
+
+

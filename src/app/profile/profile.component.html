@@ -1,0 +1,164 @@
+<div class="main" [ngStyle.xs]="{'padding.px': 0}">
+
+  <h1 *ngIf='!deviceXs'>Your Profile</h1>
+
+  <form [formGroup]="profileForm" fxLayout="column" fxLayoutAlign="space-between start" (ngSubmit)="onSubmit()" class="personInfo">
+
+      <label class="languageSelect" fxLayout.gt-xs="row" fxLayout.xs="column">
+        <div fxLayout="column" [ngStyle.xs]="{'margin-top.px': 50}">
+          <h2>Preferred Language</h2>
+          <select name="language"class="lang">
+            <option *ngFor="let lang of Language" value="lang.value">{{lang.name}}</option>
+          </select>
+        </div>
+        <div fxLayout="row">
+            <div>
+              <div class="circular--portrait" [ngStyle.xs]="{'margin-left.px': 30, 'margin-top.px': 30}">
+                <img [src]="url">
+              </div>
+              <div id="high-res-text" *ngIf="!deviceXs" (click)="dropOption()" class="popup">Click to add Image
+                <span class="popuptext" id="myPopup">
+                  <div>
+                    <input type="file"  class="hide" name="imageUpload" (change)="selectFile($event)" id="imageUpload">
+                    <label for="imageUpload" class="btn btn-large"><mat-icon class="icon">perm_media</mat-icon><span id="chooseImg">Choose from Gallery</span></label>
+                  </div>
+                  <div>
+                    <input type="button" id="takePicture" value="Take a Picture" class="hide">
+                    <label for="takePicture" class="btn1 btn-large1"><mat-icon class="icon">camera</mat-icon><span id="chooseImg">Take a Picture</span></label>
+                  </div>
+                </span>
+              </div>
+            </div>
+            
+            <div fxLayout="column" *ngIf="deviceXs">
+              <div>
+                <input type="file"  class="hide" name="imageUpload" (change)="selectFile($event)" id="imageUpload">
+                <label for="imageUpload" class="btn2 btn-large2"><mat-icon class="icon">perm_media</mat-icon><span id="chooseImg">Choose from Gallery</span></label>
+              </div>
+              <div>
+                <input type="button" id="takePicture" value="Take a Picture" class="hide">
+                <label for="takePicture" class="btn3 btn-large3"><mat-icon class="icon">camera</mat-icon><span id="chooseImg">Take a Picture</span></label>
+              </div>
+            </div>
+        </div>
+      </label>
+
+      <label>
+        <h2>Login and Security</h2>
+      </label>
+ 
+        <label fxLayout.xs="column" fxLayoutAlign="space-around" fxLayoutGap.gt-xs="120px" >
+          <span>Name</span>
+          <div fxLayout="row" fxLayoutGap.gt-xs="40px">
+              <input type="text" #username formControlName="username" class="field"  >
+              <input type="button" value="Edit" (click)="onNameEditClick()" class="edit">
+          </div>
+        </label>
+        
+        <label fxLayout.xs="column" fxLayoutAlign="space-around" fxLayoutGap.gt-xs="120px" class="form-group">
+          <span >E-mail</span>
+          <div fxLayout="row" fxLayoutGap.gt-xs="40px">
+              <input type="email" formControlName="mail" class="field form-control">
+              <input type="button" value="Edit" (click)="onMailEditClick()" class="edit">
+          </div>
+        </label>
+
+        <label fxLayout.xs="column" fxLayoutAlign="space-around" fxLayoutGap.gt-xs="65px">
+          <span >Mobile Number</span>
+          <div fxLayout="row" fxLayoutGap.gt-xs="40px">
+              <input type="tel" formControlName="mobile" class="field">
+              <input type="button" value="Edit"  (click)="onMobEditClick()" class="edit">
+          </div>
+        </label>
+
+        <label fxLayout.xs="column" fxLayoutAlign="space-around" fxLayoutGap.gt-xs="100px">
+          <span>Password</span>
+          <div fxLayout="row" fxLayoutGap.gt-xs="40px">
+              <input type="password" formControlName="password" class="field">
+              <input type="button" value="Edit" (click)="onPassEditClick()" class="edit">
+          </div>
+        </label>
+
+        <label fxLayoutAlign="space-around" >
+              <input type="submit"  class="submit" value="Save Changes" [ngStyle.gt-xs]="{'margin-left.px': 163}">
+                    </label>
+  
+  </form>
+
+
+  <div class="saveCards" [ngStyle.gt-xs]="{'width.px': 750}" *ngIf='isCard'>
+
+    <h2>Saved Cards</h2>
+
+    <mat-card fxLayout="row" *ngFor="let card of cardDetails">
+
+      <div fxLayout.xs="column" fxLayout.gt-xs="row" fxLayoutGap.gt-xs="170px" >
+        <label>
+          {{card.CardNo}}
+        </label>
+        <label>
+          {{card.Name}}
+        </label>
+        <label>
+          Expiry {{card.Month + "/" + card.Year}}
+        </label>
+      </div>
+
+      <div>
+        <label (click)="onRemoveCard(card)">
+          <button class="close" [ngStyle.xs]="{'margin-left.%': 43, 'margin-top.px': -25}" >X</button>
+        </label>
+      </div>
+
+    </mat-card>
+
+  </div>
+
+
+  <div id="cardDetail">
+
+    <h2 [ngStyle.xs]="{'margin-left.px': 30}">Add a New Card</h2>
+
+    <form [formGroup]="cardForm" class="cardInfo" fxLayout.xs="column" fxLayout.gt-xs="row" fxLayoutGap.gt-xs="50px"  >
+
+      <label fxLayout="column" fxLayoutAlign="space-around">
+        <span>Name on card</span>
+        <div fxLayout="row">
+            <input type="text" formControlName="name" class="field">
+        </div>
+      </label>
+
+      <label fxLayout="column" fxLayoutAlign="space-around">
+        <span>Card Number</span>
+        <div fxLayout="row">
+            <input type="text" formControlName="cardNum" class="field">
+        </div>
+      </label>
+        
+      <label fxLayout="column">
+
+        <span>Expiry Date</span>
+
+        <div class="dateField" fxLayout="row" fxLayoutGap="10px">
+          <div class="month">
+            <select name="Month" class="date" formControlName="month">
+              <option *ngFor="let month of Month" value="month.value">{{month.name}}</option>
+            </select>
+          </div>
+          <div class="year">
+            <select name="Year" class="date" formControlName="year">
+              <option *ngFor="let year of Year" value="year.value">{{year.name}}</option>
+            </select>
+          </div>
+        </div>  
+      </label>
+
+    <label>
+        <input type="button" value="Add Card" class="submit" [ngStyle.gt-xs]="{'margin-top.px': 20}">
+    </label>
+
+    </form>
+
+  </div>
+    
+</div>
